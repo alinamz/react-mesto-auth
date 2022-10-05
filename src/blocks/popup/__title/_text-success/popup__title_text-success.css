@@ -1,4 +1,4 @@
-.popup__title_info-text {
+.popup__title_text-success {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 900;
@@ -9,7 +9,7 @@
 }
 
 @media screen and (max-width: 897px) {
-    .popup__title_info-text {
+    .popup__title_text-success {
         margin-left: 18px;
         font-size: 20px;
         line-height: 24px;

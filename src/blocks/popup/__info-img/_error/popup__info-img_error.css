@@ -1,0 +1,8 @@
+.popup__info-img_error {
+    background-image: url(../../../../images/error.svg);
+    width: 120px;
+    height: 120px;
+    border: none;
+    box-shadow: none;
+    text-decoration: none;
+}

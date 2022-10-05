@@ -18,8 +18,6 @@ import Register from './Register.js';
 import Login from './Login.js';
 import InfoTooltip from './InfoTooltip.js';
 import * as auth from "../utils/auth.js";
-import resImg from "../images/gud.svg";
-import errorImg from "../images/error.svg";
 
 
 function App() {
@@ -32,10 +30,10 @@ function App() {
   const [isConfirmPopupOpen, setIsConfirmPopupOpen] = React.useState(false);
   const [selectedCardId, setSelectedCardId] = React.useState(null);
   const [isInfoPopupOpen, handleIsInfoPopupOpen] = React.useState(false);
-  const [messageResult, setMessageResult] = React.useState({
-    text: "",
-    image: ""
-  })
+
+  // константа для попапа сообщения о регистрации
+  const [isLogin, setIsLogin] = React.useState(false);
+
 
   // константа для отправки не зарегестрированных пользователей в окно регистарции
   const [loggedIn, setLoggedIn] = React.useState(false);
@@ -74,17 +72,11 @@ function App() {
     auth
       .register(passwordUser, emailUser)
       .then(() => {
-        setMessageResult({
-          text: "Вы успешно зарегистрировались!",
-          image: resImg
-        });
+        setIsLogin(!isLogin)
         navigate("/sign-in")
       })
       .catch(() => {
-        setMessageResult({
-          text: "Что-то пошло не так!Попробуйте ещё раз.",
-          image: errorImg
-        });
+        setIsLogin(isLogin)
       })
       .finally(() => {
         handleIsInfoPopupOpen(true);
@@ -102,6 +94,7 @@ function App() {
         if (data.token) {
           localStorage.setItem('jwt', data.token);
           setLoggedIn(true);
+          setIsLogin(!isLogin)
           navigate("/", { replace: true })
         } else {
           return;
@@ -234,7 +227,7 @@ function App() {
             }
             />
 
-            <Route path="/sign-up" element={<Register onSuccess={handleInfoMessage} onMessge={setMessageResult} handleRegist={handleRegist} />} />
+            <Route path="/sign-up" element={<Register onSuccess={handleInfoMessage} handleRegist={handleRegist} />} />
             <Route path="/sign-in" element={<Login handleAuthorization={handleAuthorization} />} />
           </Routes>
           <Footer />
@@ -252,7 +245,7 @@ function App() {
             onClose={closeAllPopups}
           />
 
-          <InfoTooltip onClose={closeAllPopups} isOpen={isInfoPopupOpen} messageResult={messageResult} />
+          <InfoTooltip isLogin={isLogin} onClose={closeAllPopups} isOpen={isInfoPopupOpen} />
         </div>
       </div >
     </CurrentUserContext.Provider>
