@@ -56,9 +56,6 @@
 @import url(../blocks/header/__link/header__link.css);
 @import url(../blocks/header/__info/header__info.css);
 @import url(../blocks/header/__link/_exit/header__link_exit.css);
-@import url(../blocks/popup/__title/_text-error/popup__title_text-error.css);
-@import url(../blocks/popup/__title/_text-success/popup__title_text-success.css);
 @import url(../blocks/popup/__info-img/popup__info-img.css);
-@import url(../blocks/popup/__info-img/_error/popup__info-img_error.css);
-@import url(../blocks/popup/__info-img/_success/popup__info-img_success.css);
 @import url(../blocks/header/__link/_entry/header__link_entry.css);
+@import url(../blocks/popup/__title/_info-text/popup__title_info-text.css);
