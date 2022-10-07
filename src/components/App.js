@@ -177,6 +177,7 @@ function App() {
 
   // загрузка данных польователя на страницу
   React.useEffect(() => {
+    if (loggedIn) {
     const initialPromises = Promise.all([
       api.getUserData(),
       api.getInitalCards(),
@@ -190,6 +191,7 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
+    }
   }, [loggedIn]);
 
   // удаляем карточку
